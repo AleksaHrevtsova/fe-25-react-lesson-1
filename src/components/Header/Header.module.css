@@ -1,9 +1,21 @@
-.header {
+@value mainColor from '../../vars.module.css';
+
+.class {
+  font-weight: bold;
+  color: mainColor;
+}
+
+.flexCenter {
   display: flex;
-  flex-wrap: wrap;
-  background: yellow;
-  padding: 1.5rem 0;
   align-items: center;
+  background: yellow;
+  font-size: 20px;
+}
+
+.header {
+  composes: flexCenter;
+  flex-wrap: wrap;
+  padding: 1.5rem 0;
   justify-content: flex-start;
   position: relative;
 
@@ -31,9 +43,9 @@
   }
 }
 .navbar {
-  display: flex;
+  composes: flexCenter;
+
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-between;
   padding-top: 0;
   padding-bottom: 0;

@@ -1,4 +1,5 @@
 import React from "react";
+import FriendListItem from "./FriendListItem";
 import s from "./FriendList.module.css";
 const List = ({ array }) => {
   return (
@@ -8,10 +9,14 @@ const List = ({ array }) => {
         return (
           <FriendListItem
             key={el.id}
-            name={name}
-            avatar={avatar}
+            title={name}
+            url={avatar}
             className={s.item}
           />
+          // <li key={el.id}>
+          //   {name}
+          //   <img src={avatar} alt={name} />
+          // </li>
         );
       })}
     </ul>

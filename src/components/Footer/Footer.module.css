@@ -1,3 +1,7 @@
+.class {
+  font-style: italic;
+}
+
 .footer {
   display: flex;
   padding: 20px;

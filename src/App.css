@@ -4,14 +4,19 @@
   box-sizing: border-box;
 }
 
+.class {
+  background-color: aqua;
+}
+
 body {
   display: block;
   font-family: "Courier New", Courier, monospace;
   font-size: 14px;
   font-style: normal;
 }
+
 .App {
-  background-color: black;
+  background-color: red;
   color: rgb(169, 157, 223);
 }
 
