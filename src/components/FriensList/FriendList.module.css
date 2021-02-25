@@ -1,0 +1,6 @@
+.list {
+  display: flex;
+}
+.item {
+  width: 200px;
+}

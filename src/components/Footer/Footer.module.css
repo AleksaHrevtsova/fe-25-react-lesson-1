@@ -1,5 +1,113 @@
 .footer {
   display: flex;
   padding: 20px;
-  background: blue;
+  background: rgb(21, 21, 27);
+
+  background-image: url(../../assets/images/footer1.jpeg);
+  background-blend-mode: soft-light;
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+
+  position: relative;
+  padding: 2rem 0 0;
+}
+
+.container {
+  width: 100%;
+  padding: 15px auto;
+  margin: 0 auto;
+
+  @media screen and (min-width: 576px) {
+    max-width: 540px;
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 720px;
+  }
+
+  @media screen and (min-width: 991px) {
+    max-width: 960px;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 -15px;
+}
+
+.textCenter {
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+.logo {
+  display: inline-block;
+  margin: 0 auto 4rem;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.navbar {
+  display: block;
+  margin: 0 auto 4rem;
+}
+.navbar ul li {
+  display: inline-block;
+}
+
+.navbar .navLinks li a {
+  display: block;
+  color: aliceblue;
+
+  position: relative;
+
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.7px;
+  text-transform: capitalize;
+  padding: 1rem 2.5rem;
+
+  @media screen and (max-width: 991px) {
+    padding: 1.5rem 1rem;
+  }
+
+  @media screen and (max-width: 1199px) {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5rem;
+}
+
+.social a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 4.5rem;
+  height: 4.5rem;
+
+  margin: 0 1rem;
+
+  font-size: 1.6rem;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.footer p {
+  color: aqua;
+  margin-bottom: 2rem;
 }

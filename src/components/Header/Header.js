@@ -2,11 +2,14 @@ import React from "react";
 import s from "./Header.module.css";
 // console.log(s);
 
-const Header = function () {
+const Header = function ({ children }) {
   return (
     <header className={s.header}>
-      <nav>
-        <a href="#">Header</a>
+      <a href="#" className={s.logo}>
+        Header
+      </a>
+      <button className={s.navbarToggler}>-</button>
+      <nav className={s.navbar}>
         <ul>
           <li>
             <a href="#">Home</a>
@@ -18,6 +21,7 @@ const Header = function () {
             <a href="#">Contacts</a>
           </li>
         </ul>
+        {children}
       </nav>
     </header>
   );

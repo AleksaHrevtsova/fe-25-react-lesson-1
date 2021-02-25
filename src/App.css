@@ -1,4 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: block;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  font-style: normal;
+}
 .App {
   background-color: black;
-  color: wheat;
+  color: rgb(169, 157, 223);
+}
+
+a {
+  text-decoration: none;
+  color: rgb(52, 53, 54);
+  transition: all 0.3s ease-in-out;
+}
+button {
+  text-transform: none;
+  overflow: visible;
+  font-family: inherit;
+  margin: 0;
+}
+button:not(:disabled) {
+  cursor: pointer;
+}
+img {
+  border-style: none;
+  display: block;
+  width: 100%;
+}
+
+ul {
+  list-style: none;
 }
