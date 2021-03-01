@@ -1,38 +1,15 @@
 import React from "react";
 import s from "./Header.module.css";
-// console.log(s);
-import f from "../Footer/Footer.module.css";
-
+import { Navigation } from "../Navigation/Navigation";
 const Header = function ({ children }) {
   return (
     <header className={s.header}>
-      <a href="#" className={s.logo}>
-        Header
-      </a>
-      <a href="#" className="class">
-        App class
-      </a>
-      <a href="#" className={s.class}>
-        header class
-      </a>
-      <a href="#" className={f.class}>
-        footer class
-      </a>
-      <button className={s.navbarToggler}>-</button>
-      <nav className={s.navbar}>
-        <ul>
-          <li>
-            <a href="#">Home</a>
-          </li>
-          <li>
-            <a href="#">About</a>
-          </li>
-          <li>
-            <a href="#">Contacts</a>
-          </li>
-        </ul>
-        {children}
-      </nav>
+      <div className="container">
+        <a href="#" className={s.logo}>
+          Header
+        </a>
+        <nav>{children}</nav>
+      </div>
     </header>
   );
 };

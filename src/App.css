@@ -7,7 +7,9 @@
   background-color: black;
 }
 
-.class {
+.container {
+  width: 90%;
+  padding: 0 1.5rem;
   background-color: aqua;
 }
 
@@ -17,13 +19,16 @@ body {
   font-size: 14px;
   font-style: normal;
 }
-
-.App {
-  background-color: red;
-  color: rgb(169, 157, 223);
+img {
+  display: block;
+  width: 100%;
+  height: inherit;
+  object-fit: cover;
+  border-style: none;
 }
 
 a {
+  display: block;
   text-decoration: none;
   color: rgb(52, 53, 54);
   transition: all 0.3s ease-in-out;
@@ -37,12 +42,8 @@ button {
 button:not(:disabled) {
   cursor: pointer;
 }
-img {
-  border-style: none;
-  display: block;
-  width: 100%;
-}
 
 ul {
   list-style: none;
+  margin-bottom: 0;
 }

@@ -1,21 +1,20 @@
 import React from "react";
-import { v4 as id } from "uuid";
-import Item from "../Item/FriendListItem";
-const i = id();
-console.log("id: ", i);
-
-const Gallery = ({ array }) => {
-  console.log("array: ", array);
+import s from "./Gallery.module.css";
+import { v4 as genId } from "uuid";
+const Gallery = ({ gallery }) => {
   return (
-    <ul>
-      {array.map((el) => (
-        <Item title={el.alt} url={el.url} />
-        // <li key={id()}>
-        //   <img src={el.url} alt={el.alt} width="200" />
-        // </li>
-      ))}
-    </ul>
+    <>
+      <ul className={s.list}>
+        {gallery.map((item) => {
+          const { url, alt } = item;
+          return (
+            <li key={genId()}>
+              <img src={url} alt={alt} />
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 };
-
 export default Gallery;

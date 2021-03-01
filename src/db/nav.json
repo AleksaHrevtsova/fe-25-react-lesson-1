@@ -2,26 +2,22 @@
   {
     "id": "1",
     "props": {
-      "name": "link-1",
-      "number": 2,
-      "path": "#link1",
-      "url": ""
+      "name": "home",
+      "path": "/"
     }
   },
   {
     "id": "2",
     "props": {
-      "name": "link-1",
-      "number": 4,
-      "path": "#link1"
+      "name": "about",
+      "path": "/about"
     }
   },
   {
     "id": "3",
     "props": {
-      "name": "link-1",
-      "number": 6,
-      "path": "#link1"
+      "name": "contacts",
+      "path": "/contacts"
     }
   }
 ]
