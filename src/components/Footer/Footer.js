@@ -3,8 +3,11 @@ import s from "./Footer.module.css";
 
 const Footer = () => (
   <footer className={s.footer}>
-    <p>footer</p>
-    <p>Copyright</p>
+    <div className="container">
+      <p>
+        &copy; Всі права захищені <span>CS technology 2021</span>
+      </p>
+    </div>
   </footer>
 );
 

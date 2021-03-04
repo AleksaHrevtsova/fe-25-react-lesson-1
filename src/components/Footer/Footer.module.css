@@ -1,5 +1,7 @@
 .footer {
-  display: flex;
-  padding: 20px;
-  background: blue;
+  background-color: black;
+}
+.footer p {
+  text-align: center;
+  padding: 20px 0;
 }

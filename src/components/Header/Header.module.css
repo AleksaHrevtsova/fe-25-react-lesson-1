@@ -1,4 +1,11 @@
+@value mainColor from '../../vars.module.css';
+
+.header > div {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+}
 .header {
-  background: yellow;
-  padding: 50px;
+  background-color: black;
 }
