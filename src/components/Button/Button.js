@@ -1,7 +1,7 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button as BsBtn } from "react-bootstrap";
 
-const Button = () => {
-  return <Button variant="success">CLICK</Button>;
+const Button = ({ name }) => {
+  return <BsBtn variant="success">{name}</BsBtn>;
 };
 export default Button;
