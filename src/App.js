@@ -3,6 +3,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import React, { Component } from "react";
 import Header from "./components//Header/Header";
+import Weather from "./components/Weather/Weather";
 import Navigation from "./components//Navigation/Navigation";
 
 import Main from "./components//Main/Main";
@@ -17,7 +18,7 @@ import links from "./db/nav.json";
 import getGalleryItems from "./services/pexelsApi";
 const { getFetch } = getGalleryItems;
 
-console.log(links);
+// console.log(links);
 
 const style = {
   background: "green",
@@ -34,15 +35,18 @@ class App extends Component {
   };
 
   componentDidMount() {
+    
     const { query, page } = this.state;
     getFetch(query, page)
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         this.setState({ gallery: [...result] });
       })
       .catch((err) => {});
   }
+
   componentDidUpdate(prevProps, prevState) {
+    // console.log(`Я обновился`);
     const { query, page } = this.state;
     if (query !== prevState.query) {
       getFetch(query, page)
@@ -53,6 +57,9 @@ class App extends Component {
         })
         .catch((err) => {});
     }
+  }
+  componentWillUnmount() {
+    console.log(`Я пошел спать`);
   }
 
   getFormObject = (obj) => {
@@ -73,6 +80,7 @@ class App extends Component {
         <Header>
           <Navigation links={links} />
         </Header>
+        <Weather />
         <Main db={database}>
           <Gallery gallery={gallery} getQuery={getQuery} />
           {/* <Contacts myProps="Hello" getFormObject={this.getFormObject} /> */}

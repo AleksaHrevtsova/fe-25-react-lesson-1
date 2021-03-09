@@ -12,13 +12,13 @@ class Gallery extends Component {
   };
 
   toggleModal = () => {
-    console.log(`toggle`);
+    // console.log(`toggle`);
     this.setState({
       showModal: !this.state.showModal,
     });
   };
   handleChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     // this.setState((prev) => ({ queryValue: e.target.value }));
     this.setState({ queryValue: e.target.value });
   };

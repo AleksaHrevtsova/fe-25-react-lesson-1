@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import s from "./Modal.module.css";
 import { createPortal } from "react-dom";
 
-
 export default class Modal extends Component {
   state = {};
 
@@ -16,6 +15,7 @@ export default class Modal extends Component {
   }
 
   handleClose = (e) => {
+    console.log(e);
     console.log("target", e.target);
     console.log("currentTarget", e.currentTarget);
 
@@ -27,6 +27,7 @@ export default class Modal extends Component {
   };
 
   handleEsc = (e) => {
+    console.log(e);
     console.log(e.code);
     const { toggleModal } = this.props;
     console.log(toggleModal);
