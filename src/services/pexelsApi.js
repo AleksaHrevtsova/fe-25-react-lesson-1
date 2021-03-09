@@ -1,8 +1,7 @@
 async function getFetch(q, p, pP = 12) {
   // let key = "563492ad6f91700001000001390f9fee0a794c1182a72e49e0e0eae2";
   // let key = `563492ad6f917000010000013bbd01457a39431887d74f69015c0d48`;
-  let key = `563492ad6f917000010000012eb7a26bec714b6cbbd6f346c10047af
-`;
+  let key = `563492ad6f917000010000012eb7a26bec714b6cbbd6f346c10047af`;
   const baseUrl = `https://api.pexels.com/v1`;
 
   // прописываем параметры запроса, согласно доков API

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import s from "./Modal.module.css";
 import { createPortal } from "react-dom";
-const modalRoot = document.getElementById("modal-root");
+
 
 export default class Modal extends Component {
   state = {};
