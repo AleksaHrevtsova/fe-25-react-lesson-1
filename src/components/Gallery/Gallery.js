@@ -18,7 +18,7 @@ class Gallery extends Component {
     });
   };
   handleChange = (e) => {
-    // console.log(e.target.value);
+    console.log(e.target.value);
     // this.setState((prev) => ({ queryValue: e.target.value }));
     this.setState({ queryValue: e.target.value });
   };

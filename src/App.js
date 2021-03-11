@@ -1,6 +1,6 @@
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-
+// import axios from "axios";
 import React, { Component } from "react";
 import Header from "./components//Header/Header";
 import Navigation from "./components//Navigation/Navigation";
@@ -17,13 +17,9 @@ import links from "./db/nav.json";
 import getGalleryItems from "./services/pexelsApi";
 const { getFetch } = getGalleryItems;
 
-// console.log(links);
-
 const style = {
   background: "green",
 };
-
-// console.log("gallery json: ", gallery);
 
 class App extends Component {
   state = {
@@ -35,34 +31,28 @@ class App extends Component {
 
   componentDidMount() {
     const { query, page } = this.state;
-    getFetch(query, page)
-      .then((result) => {
-        // console.log(result);
-        this.setState({ gallery: [...result] });
-      })
-      .catch((err) => {});
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log(nextProps);
-    console.log(nextState);
-    return nextState.gallery !== this.state.gallery;
+    getFetch(query, page).then((result) => {
+      console.log(result);
+      this.setState({ gallery: [...result] });
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // console.log(`Я обновился`);
+    console.log(`Я обновился`, this.state.query);
     const { query, page } = this.state;
+
     if (query !== prevState.query) {
       getFetch(query, page)
         .then((result) => {
           console.log(result);
-          // this.setState({ gallery: [...result] });
           this.setState((prev) => ({ gallery: [...prev.gallery, ...result] }));
         })
-        .catch((err) => {});
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }
-  
+
   componentWillUnmount() {
     console.log(`Я пошел спать`);
   }
@@ -74,6 +64,7 @@ class App extends Component {
   };
 
   getQuery = (query) => {
+    console.log(query);
     this.setState({ query });
   };
 
