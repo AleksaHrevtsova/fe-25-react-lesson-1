@@ -33,6 +33,13 @@ class App extends Component {
 
   async componentDidMount() {
     const { query, page } = this.state;
+    const persistedData = JSON.parse(localStorage.getItem("gallery"));
+
+    // console.log(persistedData);
+    if (persistedData) {
+      this.setState(() => ({ gallery: [...persistedData] }));
+      return;
+    }
     // ==== ЕСЛИ НЕ ИМПОРТИРОВАТЬ ИЗ ОТДЕЛЬНОГО ФАЙЛА =====
     let key = `563492ad6f917000010000012eb7a26bec714b6cbbd6f346c10047af`;
     axios.defaults.baseURL = `https://api.pexels.com/v1`;
@@ -43,7 +50,7 @@ class App extends Component {
     const photos = await data.photos;
     this.setState({ gallery: [...photos] });
     // ==== ЕСЛИ НЕ ИМПОРТИРОВАТЬ ИЗ ОТДЕЛЬНОГО ФАЙЛА =====
-    
+
     // getFetch(query, page).then((result) => {
     //   console.log(result);
     //   this.setState({ gallery: [...result] });
@@ -52,7 +59,7 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     console.log(`Я обновился`, this.state.query);
-    const { query, page } = this.state;
+    const { query, page, gallery } = this.state;
 
     if (query !== prevState.query) {
       getFetch(query, page)
@@ -70,6 +77,10 @@ class App extends Component {
         .catch((err) => {
           console.log(err);
         });
+    }
+    if (gallery !== prevState.gallery) {
+      console.log(this.state.gallery);
+      localStorage.setItem("gallery", JSON.stringify(this.state.gallery));
     }
   }
 
