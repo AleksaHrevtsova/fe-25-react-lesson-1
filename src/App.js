@@ -3,7 +3,6 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import React, { Component } from "react";
 import Header from "./components//Header/Header";
-import Weather from "./components/Weather/Weather";
 import Navigation from "./components//Navigation/Navigation";
 
 import Main from "./components//Main/Main";
@@ -35,7 +34,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-    
     const { query, page } = this.state;
     getFetch(query, page)
       .then((result) => {
@@ -43,6 +41,12 @@ class App extends Component {
         this.setState({ gallery: [...result] });
       })
       .catch((err) => {});
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(nextProps);
+    console.log(nextState);
+    return nextState.gallery !== this.state.gallery;
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -58,6 +62,7 @@ class App extends Component {
         .catch((err) => {});
     }
   }
+  
   componentWillUnmount() {
     console.log(`Я пошел спать`);
   }
@@ -80,7 +85,6 @@ class App extends Component {
         <Header>
           <Navigation links={links} />
         </Header>
-        <Weather />
         <Main db={database}>
           <Gallery gallery={gallery} getQuery={getQuery} />
           {/* <Contacts myProps="Hello" getFormObject={this.getFormObject} /> */}

@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import api from "../../services/weatherApi";
-
-import "./Weather.css";
-// console.log(api);
-// const d = api.getFetch().then((d) => console.log(d));
+import s from "./Weather.module.css";
 
 class Weather extends Component {
   state = {
@@ -38,35 +35,45 @@ class Weather extends Component {
   render() {
     const { handleChange, handleSumbit } = this;
     const { data, search } = this.state;
-    // console.log(data.main);
+    const { name, main, weather, wind } = data;
+    console.log("main", main);
+    console.log("weather", weather);
 
     return (
       <>
         {data && (
-          <div className="card">
-            <form className="search" onSubmit={handleSumbit}>
+          <div className={s.card}>
+            <form className={s.search} onSubmit={handleSumbit}>
               <input
                 type="text"
-                className="searchBar"
+                className={s.searchBar}
                 placeholder="Search"
                 onChange={handleChange}
                 name="search"
                 // value={search}
               />
+              <h2 className={s.city}>Weather in {name}</h2>
             </form>
-            <div className="weather">
-              <h2 className="city">Weather in {data.name}</h2>
-              <h1 className="temp">{Math.round(data.main.temp)}°C</h1>
-              <div className="flex">
-                <img
-                  src="https://openweathermap.org/img/wn/04n.png"
-                  alt=""
-                  className="icon"
-                />
-                <div className="description">Cloudy</div>
-              </div>
-              <div className="humidity">Humidity: --%</div>
-              <div className="wind">Wind speed: -- km/h</div>
+            <div className={s.weather}>
+              <h1 className={s.temp}>{Math.round(main.temp)}°C</h1>
+              <ul className={s.flex}>
+                {weather.map((el) => {
+                  console.log(el);
+                  const { icon, description } = el;
+                  return (
+                    <li key={el.id}>
+                      <img
+                        src={`https://openweathermap.org/img/wn/${icon}.png`}
+                        alt="icon"
+                        className={s.icon}
+                      />
+                      <div className={s.description}>{description}</div>
+                    </li>
+                  );
+                })}
+              </ul>
+              <p className={s.humidity}>Humidity: {main.humidity}%</p>
+              <p className={s.wind}>Wind speed: {wind.speed} km/h</p>
             </div>
           </div>
         )}

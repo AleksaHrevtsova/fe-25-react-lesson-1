@@ -44,13 +44,10 @@ class Gallery extends Component {
         <section className={s.gallery}>
           <div className="container">
             {showModal && (
-              <Modal toggleModal={toggleModal} source={elem.src.tiny}>
-                <p>Everybody</p>
+              <Modal toggleModal={toggleModal}>
+                <img src={elem.src.original} alt="img" />
               </Modal>
             )}
-            <button className="mainBtn" onClick={toggleModal}>
-              show modal
-            </button>
             <div>
               <Form onSubmit={handleSubmit}>
                 <Form.Group>

@@ -1,5 +1,11 @@
 @value mainColor from '../../vars.module.css';
 
+.logo {
+  font-size: 2rem;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+}
 .header > div {
   display: flex;
   flex-flow: row;

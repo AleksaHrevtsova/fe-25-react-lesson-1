@@ -42,8 +42,6 @@ export default class Modal extends Component {
     return createPortal(
       <div className={s.backDrop} onClick={handleClose}>
         <div className={s.content}>
-          <p>Hello World</p>
-          <img src={source} alt="" />
           {children}
         </div>
       </div>,
