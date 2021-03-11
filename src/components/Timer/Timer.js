@@ -25,4 +25,4 @@ class Timer extends Component {
     return <div className={s.clockFace}>{time}</div>;
   }
 }
-export default Timer;
+// export default Timer;

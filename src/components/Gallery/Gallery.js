@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 import s from "./Gallery.module.css";
-import { v4 as genId } from "uuid";
 import { Form } from "react-bootstrap";
 import Modal from "../Modal/Modal";
+import GalleryItem from "../GalleryItem/GalleryItem";
+import PropTypes from "prop-types";
 
 class Gallery extends Component {
+  // static propTypes = {
+  //   gallery: PropTypes.arrayOf(PropTypes.object),
+  //   getQuery: PropTypes.func,
+  // };
+
   state = {
     showModal: false,
     queryValue: "",
@@ -18,7 +24,7 @@ class Gallery extends Component {
     });
   };
   handleChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     // this.setState((prev) => ({ queryValue: e.target.value }));
     this.setState({ queryValue: e.target.value });
   };
@@ -65,22 +71,7 @@ class Gallery extends Component {
             </div>
             <ul className={s.galleryList}>
               {gallery.map((el) => (
-                <li key={genId()}>
-                  <div className={s.imgWrapper}>
-                    <img src={el.src.tiny} alt={el.alt} />
-                  </div>
-                  <div className={s.imgHover}>
-                    {/* <a href="#" onClick={toggleModal}> */}
-                    <a
-                      href="#"
-                      onClick={() => {
-                        getElem(el);
-                      }}
-                    >
-                      Click Me!
-                    </a>
-                  </div>
-                </li>
+                <GalleryItem key={el.id} el={el} getElem={getElem} />
               ))}
             </ul>
           </div>
@@ -90,3 +81,8 @@ class Gallery extends Component {
   }
 }
 export default Gallery;
+
+Gallery.propTypes = {
+  gallery: PropTypes.arrayOf(PropTypes.object),
+  getQuery: PropTypes.func,
+};
