@@ -26,7 +26,7 @@ class Header extends Component {
           <a href="#" className={s.logo}>
             Header
           </a>
-          <Timer />
+          {/* <Timer /> */}
           {showWidget && (
             <Modal toggleModal={toggleWidget}>
               <Weather />
