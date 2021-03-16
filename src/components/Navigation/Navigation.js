@@ -2,16 +2,32 @@ import React from "react";
 import PropTypes from "prop-types";
 import s from "./Navigation.module.css";
 import { v4 as genId } from "uuid";
+import { NavLink } from "react-router-dom";
 
 const Navigation = ({ links }) => {
   return (
     <>
       <ul className={s.navList}>
+        {/* <li>
+          <NavLink to="/" exact>
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/about" exact>
+            About
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/contacts" exact>
+            Contacts
+          </NavLink>
+        </li> */}
         {links.map((el) => {
-          const { path, name } = el.props;
+          const { props, name } = el;
           return (
             <li key={genId()}>
-              <a href={path}>{name}</a>
+              <NavLink {...props}>{name}</NavLink>
             </li>
           );
         })}

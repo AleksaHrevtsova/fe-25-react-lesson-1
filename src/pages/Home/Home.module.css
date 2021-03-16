@@ -1,0 +1,19 @@
+.home {
+    height: 100%;
+    background-color: rgb(25, 201, 78);
+}
+
+.btn {
+    border: 2px solid black;
+    background: black;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 50px auto;
+    padding: 10px 20px;
+  }
+  .btn:hover{
+    background: white;
+    color: black;
+    transition: all 0.5s ease-out;
+  }

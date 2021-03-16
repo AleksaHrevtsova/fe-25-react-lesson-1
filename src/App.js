@@ -1,118 +1,50 @@
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-// import axios from "axios";
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
+import { Switch, Route } from "react-router-dom";
+
 import Header from "./components//Header/Header";
 import Navigation from "./components//Navigation/Navigation";
 
 import Main from "./components//Main/Main";
-import Gallery from "./components/Gallery/Gallery";
-import Contacts from "./components/Contacts/Contacts";
+import { Home, About, Contacts } from "./pages";
 
 import Footer from "./components/Footer/Footer";
 
 import database from "./db/db.json";
 import links from "./db/nav.json";
-import axios from "axios";
 
-import x from "./services/pexelsApi";
-const { getFetch } = x;
-
-const style = {
-  background: "green",
-};
+import routes from "./routes";
+// console.log(routes);
 
 class App extends Component {
-  state = {
-    query: "moon",
-    page: 1,
-    formObject: null,
-    gallery: [],
-    msg: "",
-  };
-
-  async componentDidMount() {
-    const { query, page } = this.state;
-    const persistedData = JSON.parse(localStorage.getItem("gallery"));
-
-    // console.log(persistedData);
-    if (persistedData) {
-      this.setState(() => ({ gallery: [...persistedData] }));
-      return;
-    }
-    // ==== ЕСЛИ НЕ ИМПОРТИРОВАТЬ ИЗ ОТДЕЛЬНОГО ФАЙЛА =====
-    let key = `563492ad6f917000010000012eb7a26bec714b6cbbd6f346c10047af`;
-    axios.defaults.baseURL = `https://api.pexels.com/v1`;
-    axios.defaults.headers.common["Authorization"] = key;
-    let url = `/search?query=${query}&per_page=6&page=${page}`;
-    const response = await axios.get(url);
-    const data = await response.data;
-    const photos = await data.photos;
-    this.setState({ gallery: [...photos] });
-    // ==== ЕСЛИ НЕ ИМПОРТИРОВАТЬ ИЗ ОТДЕЛЬНОГО ФАЙЛА =====
-
-    // getFetch(query, page).then((result) => {
-    //   console.log(result);
-    //   this.setState({ gallery: [...result] });
-    // });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log(`Я обновился`, this.state.query);
-    const { query, page, gallery } = this.state;
-
-    if (query !== prevState.query) {
-      getFetch(query, page)
-        .then((result) => {
-          console.log(result);
-          if (result.length) {
-            this.setState((prev) => ({
-              gallery: [...prev.gallery, ...result],
-            }));
-          } else {
-            this.setState({ msg: "Nothing to show by your request" });
-            alert(this.state.msg);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-    if (gallery !== prevState.gallery) {
-      console.log(this.state.gallery);
-      localStorage.setItem("gallery", JSON.stringify(this.state.gallery));
-    }
-  }
-
-  componentWillUnmount() {
-    console.log(`Я пошел спать`);
-  }
-
-  getFormObject = (obj) => {
-    this.setState({
-      formObject: obj,
-    });
-  };
-
-  getQuery = (query) => {
-    console.log(query);
-    this.setState({ query });
-  };
-
   render() {
-    const { gallery, msg } = this.state;
-    const { getQuery } = this;
     return (
       <div className="App">
-        <Header>
+        <Header className="Header">
           <Navigation links={links} />
         </Header>
-        <Main db={database}>
-          {msg && <p>{msg}</p>}
-          <Gallery gallery={gallery} getQuery={getQuery} />
-          {/* <Contacts myProps="Hello" getFormObject={this.getFormObject} /> */}
+        <Main db={database} className="Main">
+          <Suspense fallback="Waiting...">
+            <Switch>
+              {routes.map((route) => {
+                console.log(route);
+                return (
+                  // <Route
+                  //   exact={route.exact}
+                  //   path={route.path}
+                  //   component={route.component}
+                  // />
+                  <Route {...route} />
+                );
+              })}
+              {/* <Route exact path="/" component={Home} />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/contacts" component={Contacts} /> */}
+            </Switch>
+          </Suspense>
         </Main>
-        <Footer />
+        <Footer className="Footer" />
       </div>
     );
   }

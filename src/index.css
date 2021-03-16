@@ -34,12 +34,23 @@ img {
   width: 90%;
   padding: 0 1.5rem;
 }
+html, body {
+  height: 100%;
+}
 
 body {
-  display: block;
+  display: flex;
+  flex-flow: column;
   font-family: "Courier New", Courier, monospace;
   font-size: 14px;
   font-style: normal;
+}
+.Header, Footer {
+  flex: 0 0 auto;
+}
+
+.Main {
+  flex: 1 0 auto;
 }
 
 button {

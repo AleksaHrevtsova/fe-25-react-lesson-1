@@ -1,3 +1,72 @@
+http://localhost:3000/fe-25-react-lesson-1/
+http://localhost:3000/fe-25-react-lesson-1/about
+http://localhost:3000/fe-25-react-lesson-1/contacts
+http://localhost:3000/fe-25-react-lesson-1/new
+
+
+# 
+npm i react-router react-router-dom
+
+в index.js 
+import { BrowserRouter } from "react-router-dom";
+и заворачиваем все приложение в компонент BrowserRouter
+
+в Navigation.js
+import { NavLink } from "react-router-dom";
+<NavLink to={path} exact>{name}</NavLink>
+
+
+в App.js 
+import React, { Suspense } from "react";
+import { Switch, Route } from "react-router-dom";
+в рендере компонента Main
+<Suspense fallback="loading...">
+    <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/contacts" component={Contacts}/>
+        <!-- {routes.map((route) => {
+            return <Route {...route} />;
+        })} -->
+    </Switch>
+</Suspense>
+
+создаем файл routes.js
+import { lazy } from "react";
+import { v4 as id } from "uuid";
+
+const Home = lazy(() => {
+  return import("./pages/Home/Home");
+});
+const About = lazy(() => {
+  return import("./pages/About/About");
+});
+const Contacts = lazy(() => {
+  return import("./pages/Contacts/Contacts");
+});
+const routes = [
+  {
+    exact: true,
+    path: "/",
+    component: Home,
+    key: id(),
+  },
+  {
+    exact: true,
+    path: "/about",
+    component: About,
+    key: id(),
+  },
+  {
+    exact: false,
+    path: "/contacts",
+    component: Contacts,
+    key: id(),
+  },
+];
+
+export default routes;
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

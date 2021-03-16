@@ -1,23 +1,47 @@
 [
   {
     "id": "1",
+    "component": "./pages/Home/Home",
+    "name": "home",
     "props": {
-      "name": "home",
-      "path": "/"
+      "to": "/",
+      "exact": true
     }
   },
   {
     "id": "2",
+    "component": "./pages/About/About",
+    "name": "about",
     "props": {
-      "name": "about",
-      "path": "/about"
+      "to": "/about",
+      "exact": true
     }
   },
   {
     "id": "3",
+    "component": "./pages/Contacts/Contacts",
+    "name": "contacts",
     "props": {
-      "name": "contacts",
-      "path": "/contacts"
+      "to": "/contacts",
+      "exact": true
+    }
+  },
+  {
+    "id": "4",
+    "component": "./components/Footer/Footer",
+    "name": "BACK",
+    "props": {
+      "to": "/footer",
+      "exact": true
+    }
+  },
+  {
+    "id": "5",
+    "component": "./pages/Home/gallery/#3495837",
+    "name": "BACK",
+    "props": {
+      "to": "/footer",
+      "exact": true
     }
   }
 ]
