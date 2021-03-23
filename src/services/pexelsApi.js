@@ -42,6 +42,10 @@ async function getFetch(query, page) {
   const photos = await data.photos;
   return photos;
 }
+// 
+// import { createClient } from 'pexels';
+// const client = createClient('563492ad6f91700001000001390f9fee0a794c1182a72e49e0e0eae2');
+// client.photos.show({ id: 2014422 })
 
 // =======================================
 

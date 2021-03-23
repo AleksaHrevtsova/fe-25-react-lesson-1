@@ -1,29 +1,45 @@
 import React from "react";
+
+import { withRouter } from "react-router-dom";
+// import ImagePage from "../../pages/ImagePage/ImagePage";
 import s from "../Gallery/Gallery.module.css";
 import PropTypes from "prop-types";
 
-const GalleryItem = ({ el, getElem }) => {
+const GalleryItem = ({ el }) => {
   const { src, alt } = el;
+  console.log(el.id);
   return (
-    <li>
+    <>
       <div className={s.imgWrapper}>
         <img src={src.tiny} alt={alt} />
       </div>
-      <div className={s.imgHover}>
-        <a
-          href="#"
-          onClick={() => {
-            getElem(el);
-          }}
-        >
-          Click Me!
-        </a>
-      </div>
-    </li>
+      <div className={s.imgHover}></div>
+    </>
   );
 };
 
-export default GalleryItem;
+// const GalleryItem = ({ el, getElem }) => {
+//   const { src, alt } = el;
+//   return (
+//     <li>
+//       <div className={s.imgWrapper}>
+//         <img src={src.tiny} alt={alt} />
+//       </div>
+//       <div className={s.imgHover}>
+//         <a
+//           href="#"
+//           onClick={() => {
+//             getElem(el);
+//           }}
+//         >
+//           Click Me!
+//         </a>
+//       </div>
+//     </li>
+//   );
+// };
+
+export default withRouter(GalleryItem);
 
 GalleryItem.propTypes = {
   el: PropTypes.shape({

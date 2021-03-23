@@ -44,7 +44,7 @@ class Home extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(`Я обновился`, this.state.query);
+    // console.log(`Я обновился`, this.state.query);
     const { query, page, gallery } = this.state;
 
     if (query !== prevState.query) {
@@ -65,7 +65,7 @@ class Home extends Component {
         });
     }
     if (gallery !== prevState.gallery) {
-      console.log(this.state.gallery);
+      // console.log(this.state.gallery);
       localStorage.setItem("gallery", JSON.stringify(this.state.gallery));
     }
   }
@@ -85,30 +85,16 @@ class Home extends Component {
     this.setState({ query });
   };
 
-  handleBack = () => {
-    const { state } = this.props.location;
-    const { history } = this.props;
-    // console.log(history);
-    if (state && state.from) {
-      history.push(state.from);
-      return;
-    }
-    history.push("/");
-  };
-
   render() {
-    const { handleBack } = this;
-
+    const pathUrl = this.props.match.url;
+    // console.log(pathUrl);
     const { gallery, msg } = this.state;
     const { getQuery } = this;
     return (
       <div className={s.home}>
-        {/* <button className={s.btn} onClick={handleBack} type="button">
-          go Back
-        </button> */}
-        <h1>Home</h1>
+        {/* <h1>Home</h1> */}
         {msg && <p>{msg}</p>}
-        <Gallery gallery={gallery} getQuery={getQuery} />
+        <Gallery gallery={gallery} pathUrl={pathUrl} getQuery={getQuery} />
       </div>
     );
   }

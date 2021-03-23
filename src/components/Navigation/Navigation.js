@@ -4,6 +4,14 @@ import s from "./Navigation.module.css";
 import { v4 as genId } from "uuid";
 import { NavLink } from "react-router-dom";
 
+const links = {
+  active: {
+    color: "red",
+  },
+  unActive: {
+    color: "green",
+  },
+};
 const Navigation = ({ links }) => {
   return (
     <>
@@ -27,7 +35,13 @@ const Navigation = ({ links }) => {
           const { props, name } = el;
           return (
             <li key={genId()}>
-              <NavLink {...props}>{name}</NavLink>
+              <NavLink
+                {...props}
+                className={s.NavLink}
+                activeClassName={s.NavLinkActive}
+              >
+                {name}
+              </NavLink>
             </li>
           );
         })}

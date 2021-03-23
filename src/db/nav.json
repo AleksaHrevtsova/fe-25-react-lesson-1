@@ -28,19 +28,10 @@
   },
   {
     "id": "4",
-    "component": "./components/Footer/Footer",
-    "name": "BACK",
+    "component": "./pages/ImagePage/ImagePage",
+    "name": "",
     "props": {
-      "to": "/footer",
-      "exact": true
-    }
-  },
-  {
-    "id": "5",
-    "component": "./pages/Home/gallery/#3495837",
-    "name": "BACK",
-    "props": {
-      "to": "/footer",
+      "to": "/:imageId",
       "exact": true
     }
   }

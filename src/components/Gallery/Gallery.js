@@ -1,16 +1,12 @@
 import React, { Component } from "react";
 import s from "./Gallery.module.css";
 import { Form } from "react-bootstrap";
+import { Link, withRouter } from "react-router-dom";
 import Modal from "../Modal/Modal";
 import GalleryItem from "../GalleryItem/GalleryItem";
 import PropTypes from "prop-types";
 
 class Gallery extends Component {
-  // static propTypes = {
-  //   gallery: PropTypes.arrayOf(PropTypes.object),
-  //   getQuery: PropTypes.func,
-  // };
-
   state = {
     showModal: false,
     queryValue: "",
@@ -42,9 +38,12 @@ class Gallery extends Component {
     this.setState({ elem });
   };
   render() {
-    const { gallery } = this.props;
+    const { gallery, location } = this.props;
+    const { pathname } = this.props.location;
+
     const { toggleModal, handleChange, handleSubmit, getElem } = this;
     const { showModal, queryValue, elem } = this.state;
+    console.log(this.props.location);
     return (
       <>
         <section className={s.gallery}>
@@ -70,9 +69,27 @@ class Gallery extends Component {
               </Form>
             </div>
             <ul className={s.galleryList}>
-              {gallery.map((el) => (
-                <GalleryItem key={el.id} el={el} getElem={getElem} />
-              ))}
+              {gallery.map((el) => {
+                // console.log(el);
+                return (
+                  <li key={el.id}>
+                    {/* <Link to={`/${el.id}`}> */}
+                    <Link
+                      to={{
+                        pathname: `/${el.id}`,
+                        state: { from: location },
+                      }}
+                    >
+                      <GalleryItem
+                        // key={el.id}
+                        el={el}
+                        // getElem={getElem}
+                        onMouseMove={() => getElem(el)}
+                      />
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </section>
@@ -80,7 +97,7 @@ class Gallery extends Component {
     );
   }
 }
-export default Gallery;
+export default withRouter(Gallery);
 
 Gallery.propTypes = {
   gallery: PropTypes.arrayOf(PropTypes.object),
