@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import s from "./Contacts.module.css";
-import { Form, Button } from "react-bootstrap";
+import ContactsForm from "../ContactsForm/ContactsForm";
+
 class Contacts extends React.Component {
   static defaultProps = {};
   state = {
@@ -12,21 +13,12 @@ class Contacts extends React.Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(`submit`);
-    // console.dir(e.target);
-    // console.log("name: ", e.target.elements.name.value);
-    // console.log("phone: ", e.target.elements.phone.value);
-    // console.log("email: ", e.target.elements.email.value);
-    // this.setState({
-    //   name: e.target.elements.name.value,
-    //   phone: e.target.elements.phone.value,
-    //   email: e.target.elements.email.value,
-    // });
     const obj = {
       name: this.state.name,
       phone: this.state.phone,
     };
     this.props.getFormObject(obj);
+    localStorage.setItem("contacts", JSON.stringify(obj));
   };
   handleChange = (e) => {
     console.log(e.target.name);
@@ -35,18 +27,8 @@ class Contacts extends React.Component {
     });
   };
   handleClick = () => {
-    // console.log("before CLICK: ", this.state.show);
-    // this.setState({ show: !this.state.show });
-    // this.setState({ counter: this.state.counter + 10 });
-    // this.setState({ counter: this.state.counter + 10 });
-
     this.setState((prev) => ({ counter: prev.counter + 10 }));
     this.setState((prev) => ({ counter: prev.counter + 10 }));
-
-    // console.log("after CLICK: ", this.state.show);
-
-    // this.setState((prevState) => ({ show: !prevState.show }));
-    // console.log("after CLICK: ", this.state.show);
   };
   render() {
     console.log("props", this.props);
@@ -54,7 +36,7 @@ class Contacts extends React.Component {
     const { handleClick, handleSubmit, handleChange } = this;
 
     const { myProps } = this.props;
-    const {} = this.state;
+
     return (
       <section className={s.contacts}>
         <h2 className={s.title}>Contacts</h2>
@@ -74,33 +56,7 @@ class Contacts extends React.Component {
             </button>
           </div>
           <div className={s.contactsForm}>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                  onChange={handleChange}
-                  type="text"
-                  name="name"
-                  placeholder="name"
-                />
-              </Form.Group>
-
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  onChange={handleChange}
-                  type="tel"
-                  name="phone"
-                  placeholder="phone"
-                />
-              </Form.Group>
-              <Form.Group controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
-              </Form.Group>
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </Form>
+            <ContactsForm />
             {/* <form onSubmit={handleSubmit}>
               <label htmlFor="">
                 name
