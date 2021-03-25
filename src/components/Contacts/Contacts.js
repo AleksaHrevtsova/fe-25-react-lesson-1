@@ -31,8 +31,8 @@ class Contacts extends React.Component {
     this.setState((prev) => ({ counter: prev.counter + 10 }));
   };
   render() {
-    console.log("props", this.props);
-    console.log("state", this.state);
+    // console.log("props", this.props);
+    // console.log("state", this.state);
     const { handleClick, handleSubmit, handleChange } = this;
 
     const { myProps } = this.props;

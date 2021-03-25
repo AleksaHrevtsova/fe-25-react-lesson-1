@@ -81,8 +81,8 @@ class App extends Component {
   }
 }
 const mapStateToProps = (store) => {
-  console.log("store.user", store.user);
-  console.log("store.allUsers", store.allUsers);
+  // console.log("store.user", store.user);
+  // console.log("store.allUsers", store.allUsers);
   return {
     user: store.user,
     allUsers: store.allUsers,

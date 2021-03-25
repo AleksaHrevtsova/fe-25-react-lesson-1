@@ -18,7 +18,7 @@ class ContactsForm extends Component {
     };
     console.log(obj);
     this.props.z(obj);
-    this.props.y(obj);
+    this.props.addUserToStore(obj);
     localStorage.setItem("users", JSON.stringify(obj));
   };
 
@@ -30,8 +30,8 @@ class ContactsForm extends Component {
   };
 
   render() {
-    console.log("props", this.props);
-    console.log("state", this.state);
+    // console.log("props", this.props);
+    // console.log("state", this.state);
     const { handleSubmit, handleChange } = this;
 
     return (
@@ -71,7 +71,7 @@ class ContactsForm extends Component {
 
 const mapDispatchToProps = {
   z: userAction.createUser,
-  y: addUserAction.addUser,
+  addUserToStore: addUserAction.addUser,
 };
 
 export default connect(null, mapDispatchToProps)(ContactsForm);

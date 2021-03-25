@@ -12,5 +12,5 @@ const routes = links.map((link) => {
     key: id,
   };
 });
-console.log(routes);
+// console.log(routes);
 export default routes;

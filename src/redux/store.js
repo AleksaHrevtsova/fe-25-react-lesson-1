@@ -14,24 +14,36 @@
 // export default store;
 
 // ================== AFTER
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  combineReducers,
+  getDefaultMiddleware,
+} from "@reduxjs/toolkit";
 import userReducer from "./reducers/userReducers";
 import allUsersReducer from "./reducers/allUsersReducer";
+import logger from "redux-logger";
 
-// const rootReducer = combineReducers({
-//   user: userReducer,
-//   allUsers: allUsersReducer,
-// });
+const rootReducer = combineReducers({
+  user: userReducer,
+  allUsers: allUsersReducer,
+});
 
-// const store = configureStore({
-//   reducer: rootReducer,
-// });
+const middleware = [...getDefaultMiddleware(), logger];
 
 const store = configureStore({
-  reducer: {
-    user: userReducer,
-    allUsers: allUsersReducer,
-  },
+  reducer: rootReducer,
+  middleware,
+  devTools: process.env.NODE_ENV === "development",
 });
+
+// const store = configureStore({
+//   reducer: {
+//     user: userReducer,
+//     allUsers: allUsersReducer,
+//   },
+//   middleware: [...getDefaultMiddleware(), logger],
+//   devTools: process.env.NODE_ENV === "development",
+// });
+// console.log(getDefaultMiddleware());
 
 export default store;
