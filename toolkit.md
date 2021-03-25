@@ -6,7 +6,7 @@ npm i @reduxjs/toolkit
 
 вместо функции createStore будем использовать
 
-import { confugureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 
 которая уже у себя содержит подключение к тулзам в хроме вместо
 window.**REDUX_DEVTOOLS_EXTENSION** && window.**REDUX_DEVTOOLS_EXTENSION**()
@@ -16,7 +16,7 @@ redux-devtools-extension
 
 process.env.NODE_ENV = 'development' || 'production'
 
-const store = confugureStore({
+const store = configureStore({
 reducer: {},
 devTools: process.env.NODE_ENV = 'development',
 })

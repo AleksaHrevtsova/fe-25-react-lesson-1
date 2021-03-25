@@ -1,7 +1,9 @@
 ## устанавливаем библиотеки
+
 npm i redux react-redux
 
 ## создаем структуру
+
 =1
 папка redux
 /actions
@@ -19,7 +21,6 @@ store.js
 //reducers
 
 store.js
-
 
 ## создаем экшены
 
@@ -76,5 +77,10 @@ return { query: store.query, gallery: store.gallery };
 }
 
 const mapDispatchToProps = { filterContact: filterAction.filterContacts };
+
+connect(mapStateToProps, mapDispatchToProps)(Component)
+
+connect(mapStateToProps)(Component)
+connect(null, mapDispatchToProps)(Component)
 
 ##

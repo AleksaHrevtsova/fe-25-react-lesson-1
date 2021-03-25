@@ -68,12 +68,10 @@ class ContactsForm extends Component {
   }
 }
 
-const mapStateToProps = (store) => {
-  console.log(store.user);
-};
+
 const mapDispatchToProps = {
   z: userAction.createUser,
   y: addUserAction.addUser,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactsForm);
+export default connect(null, mapDispatchToProps)(ContactsForm);
