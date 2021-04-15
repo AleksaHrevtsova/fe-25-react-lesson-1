@@ -3,18 +3,22 @@
     "id": "1",
     "component": "./pages/Home/Home",
     "name": "home",
+    "private": true,
     "props": {
       "to": "/",
-      "exact": true
+      "exact": true,
+      "restricted": false
     }
   },
   {
     "id": "2",
     "component": "./pages/About/About",
     "name": "about",
+    "private": true,
     "props": {
       "to": "/about",
-      "exact": true
+      "exact": true,
+      "restricted": false
     }
   },
   {
@@ -23,16 +27,32 @@
     "name": "contacts",
     "props": {
       "to": "/contacts",
-      "exact": true
+      "private": true,
+      "exact": true,
+      "restricted": false
+    }
+  },
+
+  {
+    "id": "5",
+    "component": "./pages/Register/RegisterPage",
+    "name": "Register",
+    "private": false,
+    "props": {
+      "to": "/register",
+      "exact": true,
+      "restricted": true
     }
   },
   {
-    "id": "4",
-    "component": "./pages/ImagePage/ImagePage",
-    "name": "",
+    "id": "6",
+    "component": "./pages/Login/LoginPage",
+    "name": "Login",
+    "private": false,
     "props": {
-      "to": "/:imageId",
-      "exact": true
+      "to": "/login",
+      "exact": true,
+      "restricted": true
     }
   }
 ]

@@ -1,40 +1,44 @@
-import "./App.css";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import React, { Component, Suspense } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import image from "./assets/images/img1.jpg";
-import Loader from "./components/Loader/Loader";
+import './App.css'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import React, { Component, Suspense } from 'react'
+import { Switch, Route } from 'react-router-dom'
+import PrivateRoute from './routes/Private/PrivateRoute'
+import PublicRoute from './routes/Public/PublicRoute'
+import image from './assets/images/img1.jpg'
+import Loader from './components/Loader/Loader'
 
-import Header from "./components//Header/Header";
-import Navigation from "./components//Navigation/Navigation";
+import Header from './components//Header/Header'
+import Navigation from './components//Navigation/Navigation'
 
-import Main from "./components//Main/Main";
-import { Home, About, Contacts } from "./pages";
-import NotFound from "./components/NotFound/NotFound";
-import Footer from "./components/Footer/Footer";
+import Main from './components//Main/Main'
+import { Home, About, Contacts } from './pages'
+import NotFound from './components/NotFound/NotFound'
+import Footer from './components/Footer/Footer'
 
-import database from "./db/db.json";
-import links from "./db/nav.json";
+import database from './db/db.json'
+import links from './db/nav.json'
 
-import routes from "./routes";
+import routes from './routes'
 // console.log(routes);
 
-import { connect } from "react-redux";
-import addUserAction from "./redux/actions/userAction";
+import { connect } from 'react-redux'
+import addUserAction from './redux/actions/userAction'
+import operations from './redux/auth/operations'
 
 class App extends Component {
   state = {
     users: [],
-  };
+  }
   componentDidMount() {
-    const { allUsers } = this.props;
-    this.setState({ users: [...allUsers] });
+    const { allUsers, getMyUser } = this.props
+    getMyUser()
+    this.setState({ users: [...allUsers] })
   }
   componentDidUpdate(prevProps, prevState) {
-    const { user, allUsers } = this.props;
+    const { user, allUsers } = this.props
 
     if (user !== prevProps.user || allUsers !== prevProps.allUsers) {
-      this.setState({ users: [...allUsers] });
+      this.setState({ users: [...allUsers] })
     }
   }
 
@@ -44,7 +48,7 @@ class App extends Component {
         <Header className="Header">
           <Navigation links={links} />
         </Header>
-        <div>
+        {/* <div>
           {this.state.users.map((user) => {
             return (
               <li key={user.email}>
@@ -58,14 +62,21 @@ class App extends Component {
               </li>
             );
           })}
-        </div>
+        </div> */}
         <Main db={database} className="Main">
           {/* <Suspense fallback={<Loader image={image} />}> */}
           <Suspense fallback="Waiting...">
             <Switch>
+              {/* {routes.map((route) =>
+                route.private ? (
+                  <PrivateRoute {...route} />
+                ) : (
+                  <PublicRoute restricted={route.restricted} {...route} />
+                ),
+              )} */}
               {routes.map((route) => {
                 // console.log(route);
-                return <Route {...route} />;
+                return <Route {...route} />
               })}
               {/* <Route exact path="/" component={Home} />
               <Route exact path="/about" component={About} />
@@ -77,7 +88,7 @@ class App extends Component {
         </Main>
         <Footer className="Footer" />
       </div>
-    );
+    )
   }
 }
 const mapStateToProps = (store) => {
@@ -86,11 +97,11 @@ const mapStateToProps = (store) => {
   return {
     user: store.user,
     allUsers: store.allUsers,
-  };
-};
+  }
+}
 const mapDispatchToProps = {
   x: addUserAction.addUser,
-  delete: addUserAction.deleteUser,
-};
+  getMyUser: operations.getUser,
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)

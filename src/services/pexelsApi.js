@@ -33,8 +33,8 @@ async function getFetch(query, page) {
   // let key = `563492ad6f917000010000013bbd01457a39431887d74f69015c0d48`;
   let key = `563492ad6f917000010000012eb7a26bec714b6cbbd6f346c10047af`;
 
-  axios.defaults.baseURL = `https://api.pexels.com/v1`;
-  axios.defaults.headers.common["Authorization"] = key;
+  // axios.defaults.baseURL = `https://api.pexels.com/v1`;
+  // axios.defaults.headers.common["Authorization"] = key;
   let url = `/search?query=${query}&per_page=6&page=${page}`;
 
   const response = await axios.get(url);
