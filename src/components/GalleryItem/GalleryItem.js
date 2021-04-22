@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 const GalleryItem = ({ el }) => {
   const { src, alt } = el;
-  console.log(el.id);
+  // console.log(el.id);
   return (
     <>
       <div className={s.imgWrapper}>

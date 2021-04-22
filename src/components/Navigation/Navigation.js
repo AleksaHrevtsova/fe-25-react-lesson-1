@@ -4,7 +4,7 @@ import s from './Navigation.module.css'
 import { v4 as genId } from 'uuid'
 import { NavLink } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
-import { connect } from 'react-redux'
+import { connect, useSelector, useDispatch } from 'react-redux'
 import operations from '../../redux/auth/operations'
 import selectors from '../../redux/auth/selectors'
 
@@ -16,7 +16,12 @@ const links = {
     color: 'green',
   },
 }
-const Navigation = ({ links, myUserName, myLogout, isAuth }) => {
+
+export default function Navigation({ links, myUserName, myLogout, isAuth }) {
+  const dispatch = useDispatch()
+  const myNewUserName = useSelector(selectors.userName)
+  const myAuth = useSelector(selectors.isAuth)
+  const myNewLogout = dispatch(operations.signout())
   return (
     <>
       <ul className={s.navList}>
@@ -50,10 +55,10 @@ const Navigation = ({ links, myUserName, myLogout, isAuth }) => {
           )
         })}
       </ul>
-      {isAuth && (
+      {myAuth && (
         <div>
-          <span>Welcome, {myUserName}</span>
-          <Button type="button" variant="danger" onClick={myLogout}>
+          <span>Welcome, {myNewUserName}</span>
+          <Button type="button" variant="danger" onClick={myNewLogout}>
             Logout
           </Button>
         </div>
@@ -61,14 +66,14 @@ const Navigation = ({ links, myUserName, myLogout, isAuth }) => {
     </>
   )
 }
-const mapStateToProps = (store) => ({
-  myUserName: selectors.userName(store),
-  isAuth: selectors.isAuth(store),
-})
-const mapDispatchToProps = {
-  myLogout: operations.signout,
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Navigation)
+// const mapStateToProps = (store) => ({
+//   myUserName: selectors.userName(store),
+//   isAuth: selectors.isAuth(store),
+// })
+// const mapDispatchToProps = {
+//   myLogout: operations.signout,
+// }
+// export default connect(mapStateToProps, mapDispatchToProps)(Navigation)
 
 Navigation.propTypes = {
   links: PropTypes.arrayOf(

@@ -24,7 +24,16 @@ import allUsersReducer from './reducers/allUsersReducer'
 import logger from 'redux-logger'
 import authReducer from './auth/reducers'
 
-import { persistReducer, persistStore } from 'redux-persist'
+import {
+  persistReducer,
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 const config = {
@@ -39,11 +48,17 @@ const rootReducer = combineReducers({
   auth: persistReducer(config, authReducer),
 })
 
-const middleware = [...getDefaultMiddleware(), logger]
+// const middleware = [...getDefaultMiddleware(), logger]
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware,
+  middleware: [
+    ...getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+  ],
   devTools: process.env.NODE_ENV === 'development',
 })
 
@@ -57,4 +72,4 @@ const store = configureStore({
 // });
 // console.log(getDefaultMiddleware());
 const persistor = persistStore(store)
-export default {store, persistor}
+export default { store, persistor }
